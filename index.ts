@@ -20,14 +20,18 @@ function getSubsequence(n: number, fredy: number[]) {
 function main() {
   const input = fs.readFileSync("secuencias.txt").toString().split("\n");
   const T = parseInt(input[0]);
+  const output: number[] = [];
 
   for (let t = 1; t <= T; t++) {
     const fredy = input[t].split(" ").map(Number);
     const n = fredy.shift() as number;
+    const result = getSubsequence(n, fredy);
 
-    console.log(getSubsequence(n, fredy));
+    output.push(result);
+    console.log(result);
   }
+
+  fs.writeFileSync("output.txt", output.join("\n"));
 }
 
-// Ejecutar la función principal
 main();

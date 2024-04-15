@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
-function calcularSubsecuenciaMaria(n, fredy) {
+function getSubsequence(n, fredy) {
     var maria = [fredy[0]];
     var isGreater = false;
     for (var i = 1; i < n; i++) {
@@ -16,12 +16,14 @@ function calcularSubsecuenciaMaria(n, fredy) {
 function main() {
     var input = fs.readFileSync("secuencias.txt").toString().split("\n");
     var T = parseInt(input[0]);
-    for (var t = 0, index = 1; t < T; t++) {
-        var data = input[index++].split(" ").map(Number);
-        var n = data.shift();
-        var fredy = data;
-        console.log(calcularSubsecuenciaMaria(n, fredy));
+    var output = [];
+    for (var t = 1; t <= T; t++) {
+        var fredy = input[t].split(" ").map(Number);
+        var n = fredy.shift();
+        var result = getSubsequence(n, fredy);
+        output.push(result);
+        console.log(result);
     }
+    fs.writeFileSync("output.txt", output.join("\n"));
 }
-// Ejecutar la función principal
 main();
